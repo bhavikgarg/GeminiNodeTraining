@@ -1,0 +1,72 @@
+<html>
+
+    <script type="text/javascript">
+
+        (function(window, document) {
+
+            window.addEventListener("DOMContentLoaded", init);
+
+
+            function init() {
+                var btnDoWork = document.getElementById("btnDoWork");
+                btnDoWork.addEventListener('click', onBtnDoWorkClick);
+            }
+
+            function triggerWork() {
+                doWork(function() {
+                    display("Work Completed")
+                });
+            }
+
+            function onBtnDoWorkClick() {
+                display("Work Started");
+                setTimeout(triggerWork);
+                // doWork();
+            }
+
+            function doWork(onComplete) {
+                var total = 100,
+                    current = 0;
+
+                function oneIteration() {
+                    for (var i = 0; i < 10000/ total; i++) {
+                        for (var j = 0; j < 10000; j++) {
+                            for (var k = 0; k <100; k++){
+                                
+                            }
+                        }
+                    }                
+                    ++current;
+
+                    if(current < total) {
+                        setTimeout(oneIteration);
+                    } else {
+                        if(typeof onComplete === "function")
+                            onComplete();
+                    }
+
+                }
+
+                oneIteration();
+                
+            }
+
+            function display(message) {
+                document.getElementById("divMessage").innerHTML += message;
+            }
+
+
+        })(window, document);
+        
+
+
+    </script>
+
+
+    <body>
+
+        <input type="text" id = "myText" >
+        <button type ="button" id = "btnDoWork" >Click Me</button>
+        <div id="divMessage"></div>
+    </body>
+</html>
